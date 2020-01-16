@@ -8,7 +8,7 @@ function find() {
 function findBy(filter) {
   return db("users")
     .where(filter)
-    .first("id", "username");
+    .first('username', 'id', 'password');
 }
 
 async function add(user) {
@@ -16,7 +16,7 @@ async function add(user) {
   const hash = await bcrypt.hash(user.password, salt);
   user.password = hash;
 
-  const [id] = db("users").insert(user);
+  const [id] = await db("users").insert(user);
   return findBy({ id });
 }
 
