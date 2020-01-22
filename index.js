@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require("express");
 const helmet = require("helmet");
 const cors = require("cors");
@@ -13,7 +14,7 @@ const restrictedRouter = require("./routers/restrictedRouter");
 const restrictedMiddleware = require("./middleware/restrictedMiddleware");
 
 const server = express();
-const port = 5000;
+const port = process.env.PORT || 5000;
 
 server.use(helmet());
 server.use(cors());
